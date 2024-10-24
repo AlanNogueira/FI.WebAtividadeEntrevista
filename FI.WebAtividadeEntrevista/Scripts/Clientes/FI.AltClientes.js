@@ -1,15 +1,22 @@
 ﻿
 $(document).ready(function () {
+
+    $("#formCadastro #CPF").mask("000.000.000-00");
+    $("#formCadastro #CEP").mask("00000-000");
+    $("#formCadastro #Telefone").mask("(99)99999-9999");
+
     if (obj) {
+        console.log(obj)
         $('#formCadastro #Nome').val(obj.Nome);
-        $('#formCadastro #CEP').val(obj.CEP);
+        $('#formCadastro #CEP').val(obj.CEP.replace(/^([\d]{2})([\d]{3})([\d]{3})|^[\d]{2}.[\d]{3}-[\d]{3}/, "$1.$2-$3"));
+        $('#formCadastro #CPF').val(obj.CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"));
         $('#formCadastro #Email').val(obj.Email);
         $('#formCadastro #Sobrenome').val(obj.Sobrenome);
         $('#formCadastro #Nacionalidade').val(obj.Nacionalidade);
         $('#formCadastro #Estado').val(obj.Estado);
         $('#formCadastro #Cidade').val(obj.Cidade);
         $('#formCadastro #Logradouro').val(obj.Logradouro);
-        $('#formCadastro #Telefone').val(obj.Telefone);
+        $('#formCadastro #Telefone').val(obj.Telefone.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3"));
     }
 
     $('#formCadastro').submit(function (e) {
@@ -21,6 +28,7 @@ $(document).ready(function () {
             data: {
                 "NOME": $(this).find("#Nome").val(),
                 "CEP": $(this).find("#CEP").val(),
+                "CPF": $(this).find("#CPF").val(),
                 "Email": $(this).find("#Email").val(),
                 "Sobrenome": $(this).find("#Sobrenome").val(),
                 "Nacionalidade": $(this).find("#Nacionalidade").val(),

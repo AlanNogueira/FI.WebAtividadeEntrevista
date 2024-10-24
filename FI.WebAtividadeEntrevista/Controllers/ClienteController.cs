@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FI.AtividadeEntrevista.DML;
+using FI.AtividadeEntrevista.Utils;
 
 namespace WebAtividadeEntrevista.Controllers
 {
@@ -38,9 +39,15 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-                
+                if (bo.VerificarExistencia(Utils.RemoverNaoNumerico(model.CPF)))
+                {
+                    Response.StatusCode = 400;
+                    return Json("Já existe um cliente cadastrado com este CPF.");
+                }
+
                 model.Id = bo.Incluir(new Cliente()
-                {                    
+                {
+                    CPF = Utils.RemoverNaoNumerico(model.CPF),
                     CEP = model.CEP,
                     Cidade = model.Cidade,
                     Email = model.Email,
@@ -73,10 +80,17 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
+                if (bo.VerificarExistenciaUpdate(Utils.RemoverNaoNumerico(model.CPF), model.Id))
+                {
+                    Response.StatusCode = 400;
+                    return Json("Já existe um cliente cadastrado com este CPF.");
+                }
+
                 bo.Alterar(new Cliente()
                 {
                     Id = model.Id,
-                    CEP = model.CEP,
+                    CEP = Utils.RemoverNaoNumerico(model.CEP),
+                    CPF = Utils.RemoverNaoNumerico(model.CPF),
                     Cidade = model.Cidade,
                     Email = model.Email,
                     Estado = model.Estado,
@@ -84,7 +98,7 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = model.Nacionalidade,
                     Nome = model.Nome,
                     Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
+                    Telefone = Utils.RemoverNaoNumerico(model.Telefone)
                 });
                                
                 return Json("Cadastro alterado com sucesso");
@@ -104,6 +118,7 @@ namespace WebAtividadeEntrevista.Controllers
                 {
                     Id = cliente.Id,
                     CEP = cliente.CEP,
+                    CPF = cliente.CPF,
                     Cidade = cliente.Cidade,
                     Email = cliente.Email,
                     Estado = cliente.Estado,
