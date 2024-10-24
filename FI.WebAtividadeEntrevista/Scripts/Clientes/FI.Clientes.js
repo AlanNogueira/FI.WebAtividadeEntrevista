@@ -1,5 +1,10 @@
 ﻿
 $(document).ready(function () {
+
+    $("#CPF").mask("000.000.000-00");
+    $("#CEP").mask("00000-000");
+    $("#Telefone").mask("(99)99999-9999");
+
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
         $.ajax({
@@ -8,6 +13,7 @@ $(document).ready(function () {
             data: {
                 "NOME": $(this).find("#Nome").val(),
                 "CEP": $(this).find("#CEP").val(),
+                "CPF": $(this).find("#CPF").val(),
                 "Email": $(this).find("#Email").val(),
                 "Sobrenome": $(this).find("#Sobrenome").val(),
                 "Nacionalidade": $(this).find("#Nacionalidade").val(),

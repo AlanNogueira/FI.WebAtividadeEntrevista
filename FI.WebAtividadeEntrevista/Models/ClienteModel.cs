@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FI.AtividadeEntrevista.Validations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace WebAtividadeEntrevista.Models
         /// </summary>
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Digite um e-mail válido")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// CPF
+        /// </summary>
+        [Required]
+        [CPFValidator(ErrorMessage = "Digite um CPF válido.")]
+        public string CPF { get; set; }
 
         /// <summary>
         /// Estado
