@@ -43,15 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BoBeneficiario.cs" />
     <Compile Include="BLL\BoCliente.cs" />
+    <Compile Include="DAL\Beneficiarios\DaoBeneficiarios.cs" />
     <Compile Include="DAL\Clientes\DaoCliente.cs" />
     <Compile Include="DAL\Padrao\FI.AcessoDados.cs" />
+    <Compile Include="DML\Beneficiario.cs" />
     <Compile Include="DML\Cliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Validations\CPFValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_AltBene.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_BeneficiariosPorCliente.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_ConsBeneficiario.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_DelCliente.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_IncBeneficiario.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_PesqBeneficiario.sql" />
+    <Content Include="DAL\Beneficiarios\Procedures\FI_SP_VerificaBeneficiarioCliente.sql" />
     <Content Include="DAL\Clientes\Procedures\Alter\FI_SP_AltCliente.sql" />
     <Content Include="DAL\Clientes\Procedures\Alter\FI_SP_ConsCliente.sql" />
     <Content Include="DAL\Clientes\Procedures\Alter\FI_SP_DelCliente.sql" />

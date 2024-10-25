@@ -1,6 +1,8 @@
-﻿
-$(document).ready(function () {
+﻿var beneficiarios = [];
 
+$(document).ready(function () {
+    $("#Benf-CPF").mask("000.000.000-00");
+    $("#UpdateBenf-CPF").mask("000.000.000-00");
     $("#CPF").mask("000.000.000-00");
     $("#CEP").mask("00000-000");
     $("#Telefone").mask("(99)99999-9999");
@@ -20,7 +22,8 @@ $(document).ready(function () {
                 "Estado": $(this).find("#Estado").val(),
                 "Cidade": $(this).find("#Cidade").val(),
                 "Logradouro": $(this).find("#Logradouro").val(),
-                "Telefone": $(this).find("#Telefone").val()
+                "Telefone": $(this).find("#Telefone").val(),
+                "Beneficiarios": beneficiarios
             },
             error:
             function (r) {
@@ -61,4 +64,77 @@ function ModalDialog(titulo, texto) {
 
     $('body').append(texto);
     $('#' + random).modal('show');
+}
+
+function ModalBeneficiarios() {
+
+    var tableBody = ""
+
+    for (var i = 0; i < beneficiarios.length; i++) {
+        tableBody += CriarTableLine(beneficiarios[i].CPF, beneficiarios[i].Nome, i);
+    };                                                                            
+
+    if ($('#tableBody').html().length != beneficiarios.length) {
+        $('#tableBody tr').remove();
+        $('#tableBody').append(tableBody);
+    }
+
+    $('#modalBeneficiarios').modal('show');
+}
+
+function ModalEditarBeneficiario(id) {
+
+    $("#UpdateBenf-Nome").val(beneficiarios[id].Nome);
+    $("#UpdateBenf-CPF").val(beneficiarios[id].CPF);
+
+    $('.btnAlterarBeneficiario').prop('id', id);
+
+    $('#modalEditarBeneficiario').modal('show');
+}
+
+function AdicionarBeneficiario() {
+    var nome = $("#Benf-form #Benf-Nome").val();
+    var cpf = $("#Benf-form #Benf-CPF").val();
+
+    if (nome === "" || cpf === "")
+        return window.alert("É obrigatório informar o Nome e o CPF.");
+
+    var existe = beneficiarios.find((beneficiario) => beneficiario.CPF == cpf);
+
+    console.log(existe);
+
+    if (existe)
+        return window.alert("Já existe um beneficiário com este CPF: " + cpf);
+    else {
+        beneficiarios.push({ Nome: nome, CPF: cpf });
+        var index = beneficiarios.findIndex((beneficiario) => beneficiario.CPF == cpf);
+        var tableLine = $(CriarTableLine(cpf, nome, index));
+        $("#tableBody").append($(tableLine));
+    }
+
+    $("#Benf-form #Benf-Nome").val('');
+    $("#Benf-form #Benf-CPF").val('');
+
+    console.log(beneficiarios);
+}
+
+function ExcluirBeneficiario(item, index) {
+    beneficiarios.splice(index, 1);
+    $(item).closest('tr').remove();
+}
+
+function CriarTableLine(cpf, nome, index) {
+    return `<tr id="${index}"><td>${cpf}</td><td>${nome}</td><td><button type="button" class="btn btn-sm btn-primary" onclick="ModalEditarBeneficiario(${index})">Alterar</button>&nbsp<button type="button" class="btn btn-sm btn-primary" onclick="ExcluirBeneficiario(this, ${index})">Excluir</button></td></tr>`
+}
+
+function AlterarBeneficiario(id) {
+    var nome = $("#UpdateBenf-Nome").val();
+    var cpf = $("#UpdateBenf-CPF").val();
+
+    beneficiarios[id] = { Nome: nome, CPF:cpf }
+
+    $('#fecharAtualizarBeneficiario').trigger('click');
+    $('#BtnAdicionarBeneficiarios').trigger('click');
+
+    console.log(beneficiarios);
 }
