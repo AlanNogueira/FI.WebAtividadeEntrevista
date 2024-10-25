@@ -80,6 +80,9 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-sm btn-primary" onclick="ModalBeneficiarios()" id="BtnAdicionarBeneficiarios">Benefinciários</button>
+            </div>
             <div class="pull-right">
                 <button type="submit" class="btn btn-sm btn-success">Salvar</button>
                 @Html.ActionLink("Voltar", "Index", "Cliente", new { }, new { @class = "btn btn-sm btn-danger" })
@@ -89,3 +92,89 @@
 
 
 </form>
+
+<div id="modalBeneficiarios" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"> Beneficiários </h4>
+            </div>
+            <div class="modal-body">
+                <div id="Benf-form" class="container-fluid">
+                    <div class="row align-items-end">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Benf-CPF">CPF:</label>
+                                <input type="text" class="form-control" id="Benf-CPF" name="Benf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Benf-Nome">Nome:</label>
+                                <input type="text" class="form-control" id="Benf-Nome" name="Benf-Nome" placeholder="Ex.: João" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" style="padding-top: 26px;">
+                                <button type="button" class="btn btn-sm btn-success" onclick="AdicionarBeneficiario()">Incluir</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-4">CPF</th>
+                                    <th class="col-md-5">Nome</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="fecharModalBeneficiarios">Fechar</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+
+<div id="modalEditarBeneficiario" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"> Editar Beneficiário </h4>
+            </div>
+            <div class="modal-body">
+                <div id="Benf-form" class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="UpdateBenf-CPF">CPF:</label>
+                                <input type="text" class="form-control" id="UpdateBenf-CPF" name="UpdateBenf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="UpdateBenf-Nome">Nome:</label>
+                                <input type="text" class="form-control" id="UpdateBenf-Nome" name="UpdateBenf-Nome" placeholder="Ex.: João" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <button type="button" class="btn btn-sm btn-success align-self-end btnAlterarBeneficiario" onclick="AlterarBeneficiario(this.id)">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="fecharAtualizarBeneficiario">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!-- /.modal -->
