@@ -1,9 +1,7 @@
 ﻿var beneficiarios = [];
 
 $(document).ready(function () {
-    $("#Benf-CPF").mask("000.000.000-00");
-    $("#UpdateBenf-CPF").mask("000.000.000-00");
-    $("#CPF").mask("000.000.000-00");
+    $(".CPF").mask("000.000.000-00");
     $("#CEP").mask("00000-000");
     $("#Telefone").mask("(99)99999-9999");
 
@@ -124,7 +122,7 @@ function ExcluirBeneficiario(item, index) {
 }
 
 function CriarTableLine(cpf, nome, index) {
-    return `<tr id="${index}"><td>${cpf}</td><td>${nome}</td><td><button type="button" class="btn btn-sm btn-primary" onclick="ModalEditarBeneficiario(${index})">Alterar</button>&nbsp<button type="button" class="btn btn-sm btn-primary" onclick="ExcluirBeneficiario(this, ${index})">Excluir</button></td></tr>`
+    return `<tr id="${index}"><td>${ cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4") }</td><td>${nome}</td><td><button type="button" class="btn btn-sm btn-primary" onclick="ModalEditarBeneficiario(${index})">Alterar</button>&nbsp<button type="button" class="btn btn-sm btn-primary" onclick="ExcluirBeneficiario(this, ${index})">Excluir</button></td></tr>`
 }
 
 function AlterarBeneficiario(id) {

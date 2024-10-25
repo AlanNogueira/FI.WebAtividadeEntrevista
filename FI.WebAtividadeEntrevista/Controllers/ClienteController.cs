@@ -136,7 +136,7 @@ namespace WebAtividadeEntrevista.Controllers
                         boBeneficiario.Alterar(new Beneficiario
                         {
                             Id = beneficiario.Id,
-                            CPF = beneficiario.CPF,
+                            CPF = Utils.RemoverNaoNumerico(beneficiario.CPF),
                             Nome = beneficiario.Nome,
                         });
                     }
@@ -152,7 +152,7 @@ namespace WebAtividadeEntrevista.Controllers
                         boBeneficiario.Incluir(new Beneficiario
                         {
                             Id = beneficiario.Id,
-                            CPF = beneficiario.CPF,
+                            CPF = Utils.RemoverNaoNumerico(beneficiario.CPF),
                             Nome = beneficiario.Nome,
                             IdCliente = model.Id
                         });

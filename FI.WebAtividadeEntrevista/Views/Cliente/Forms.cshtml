@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="CPF">CPF:</label>
-                <input required="required" type="text" class="form-control" id="CPF" name="CPF" placeholder="Ex.: 123.456.789-10" maxlength="255">
+                <input required="required" type="text" class="form-control CPF" id="CPF" name="CPF" placeholder="Ex.: 123.456.789-10" maxlength="255">
             </div>
         </div>
         <div class="col-md-6">
@@ -106,7 +106,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="Benf-CPF">CPF:</label>
-                                <input type="text" class="form-control" id="Benf-CPF" name="Benf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
+                                <input type="text" class="form-control CPF" id="Benf-CPF" name="Benf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -157,7 +157,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="UpdateBenf-CPF">CPF:</label>
-                                <input type="text" class="form-control" id="UpdateBenf-CPF" name="UpdateBenf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
+                                <input type="text" class="form-control CPF" id="UpdateBenf-CPF" name="UpdateBenf-CPF" placeholder="Ex.: 123.456.789-10" maxlength="50">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -166,8 +166,10 @@
                                 <input type="text" class="form-control" id="UpdateBenf-Nome" name="UpdateBenf-Nome" placeholder="Ex.: João" maxlength="50">
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex flex-column">
-                            <button type="button" class="btn btn-sm btn-success align-self-end btnAlterarBeneficiario" onclick="AlterarBeneficiario(this.id)">Salvar</button>
+                        <div class="col-md-4">
+                            <div class="form-group" style="padding-top: 26px;">
+                                <button type="button" class="btn btn-sm btn-success btnAlterarBeneficiario" onclick="AlterarBeneficiario(this.id)">Salvar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
