@@ -29,17 +29,6 @@ namespace FI.AtividadeEntrevista.BLL
         }
 
         /// <summary>
-        /// Consulta o beneficiario pelo id
-        /// </summary>
-        /// <param name="id">id do beneficiario</param>
-        /// <returns></returns>
-        public DML.Beneficiario Consultar(long id)
-        {
-            DAL.DaoBeneficiarios bene = new DAL.DaoBeneficiarios();
-            return bene.Consultar(id);
-        }
-
-        /// <summary>
         /// Excluir o beneficiario pelo id
         /// </summary>
         /// <param name="id">id do beneficiario</param>
@@ -48,24 +37,6 @@ namespace FI.AtividadeEntrevista.BLL
         {
             DAL.DaoBeneficiarios bene = new DAL.DaoBeneficiarios();
             bene.Excluir(id);
-        }
-
-        /// <summary>
-        /// Lista os beneficiarios
-        /// </summary>
-        public List<DML.Beneficiario> Listar()
-        {
-            DAL.DaoBeneficiarios bene = new DAL.DaoBeneficiarios();
-            return bene.Listar();
-        }
-
-        /// <summary>
-        /// Lista os beneficiarios
-        /// </summary>
-        public List<DML.Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
-        {
-            DAL.DaoBeneficiarios bene = new DAL.DaoBeneficiarios();
-            return bene.Pesquisa(iniciarEm, quantidade, campoOrdenacao, crescente, out qtd);
         }
 
         /// <summary>
@@ -79,6 +50,11 @@ namespace FI.AtividadeEntrevista.BLL
             return bene.VerificarExistenciaUpdate(CPF, Id);
         }
 
+        /// <summary>
+        /// Obter beneficiários por cliente
+        /// </summary>
+        /// <param name="clienteId">Id do Cliente</param>
+        /// <returns></returns>
         public List<DML.Beneficiario> ObterBeneficiariosPorCliente(long clienteId)
         {
             DAL.DaoBeneficiarios bene = new DAL.DaoBeneficiarios();
